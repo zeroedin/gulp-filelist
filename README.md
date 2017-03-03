@@ -110,10 +110,24 @@ gulp
 ```
 Outputs:
 ```
+/// <amd dependency='directory/awesome.file'/>/// <amd dependency='directory/lame.file'/>
+```
+
+#### Output file with custom template in JSON format: `{ outputJSON: true, destRowTemplate: <rowStringTemplate> }`
+
+```
+gulp
+  .src(['directory/awesome.file', 'directory/lame.file'])
+  .pipe(require('gulp-filelist')('filelist.json', { outputJSON: true, destRowTemplate: "/// <amd dependency='@filePath@'/>" }))
+  .pipe(gulp.dest('out'))
+```
+Outputs:
+```
 [
-  "directory/awesome",
-  "directory/lame"
+  "directory/awesome.file",
+  "directory/lame.file"
 ]
 ```
+
 
 ## [MIT Licensed](LICENSE)
