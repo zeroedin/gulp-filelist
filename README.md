@@ -118,14 +118,14 @@ Outputs:
 ```
 gulp
   .src(['directory/awesome.file', 'directory/lame.file'])
-  .pipe(require('gulp-filelist')('filelist.json', { outputJSON: true, destRowTemplate: "/// <amd dependency='@filePath@'/>" }))
+  .pipe(require('gulp-filelist')('filelist.json', { outputJSON: true, destRowTemplate: "http://someurl.com/@filePath@" }))
   .pipe(gulp.dest('out'))
 ```
 Outputs:
 ```
 [
-  "directory/awesome.file",
-  "directory/lame.file"
+  "http://someurl.com/directory/awesome.file",
+  "http://someurl.com/directory/lame.file"
 ]
 ```
 
