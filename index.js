@@ -41,16 +41,21 @@ module.exports = function(out, options) {
       }
     }
     filePath = filePath.replace(/\\/g, '/');
-    
+
     if(options.destRowTemplate) {
       fileList.push(options.destRowTemplate.replace('@filePath@', filePath));
     } else {
       fileList.push(filePath);
-    }    
-    
+    }
+
     cb();
   }, function(cb) {
-    var buffer = (options.destRowTemplate) ? new Buffer(fileList.join('')) : new Buffer(JSON.stringify(fileList, null, '  '));
+    var buffer;
+    if (options.outputJson){
+      buffer = new Buffer(JSON.stringify(fileList, null, '  '));
+    } else {
+      buffer = new Buffer(fileList.join(''));
+    }
 
     var fileListFile = new File({
       path: out,
