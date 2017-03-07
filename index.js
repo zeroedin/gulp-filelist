@@ -51,6 +51,9 @@ module.exports = function(out, options) {
     cb();
   }, function(cb) {
     var buffer;
+    if (options.outputSort){
+      fileList.sort();
+    }
     if (options.outputJson){
       buffer = new Buffer(JSON.stringify(fileList, null, '  '));
     } else {
